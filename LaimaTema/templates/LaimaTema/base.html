@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html class="has-background-white-bis">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+    <link rel="stylesheet" href="{% static 'LaimaTema/css/bulma.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
         integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
         crossorigin="anonymous" />
+    <script type="text/javascript" src="{% static 'LaimaTema/js/nav-span.js' %}"></script>
 </head>
 
 <body>
@@ -22,13 +23,12 @@
                         <div class="container">
                             <a href="{% url 'home' %}"><h1 class="title is-1 has-text-danger">LaimaTema</h1></a>
                             <h2 class="subtitle has-text-white-ter">ทำให้การขายของออนไลน์ของคุณเป็นเรื่องง่าย!</h2>
-                            <a href="#"><button class="button is-danger is-light">ลงทะเบียน</button></a>
+                            <a href="{% url 'signup' %}"><button class="button is-danger is-light">ลงทะเบียน</button></a>
                         </div>
                     </div>
                     <div class="level-right">
                         <div class="box container">
                             {% block login %}
-
                             {% endblock %}
                         </div>
                     </div>

@@ -1,0 +1,202 @@
+{% extends "LaimaTema/signup-base.html" %}
+
+{% block title %}ลงทะเบียน : LaimaTema{% endblock %}
+
+{% block signup %}
+{% if user.is_anonymous %}
+<form method="POST">
+    {% csrf_token %}
+    {% load widget_tweaks %}
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">ชื่อผู้ใช้</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    {{ form.username|add_class:"input column is-5"|attr:"placeholder:Username" }}
+                    <span class="icon is-small is-left">
+                                            <i class="fas fa-user-lock"></i>
+                                    </span>
+                </p>
+                {% if form.username.help_text %}
+                <p class="help">{{ form.username.help_text }}</p>
+                {% endif %}
+                {% for error in form.username.errors %}
+                <p class="help has-text-danger">{{ error }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">รหัสผ่าน</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    {{ form.password1|add_class:"input column is-5"|attr:"placeholder:Password" }}
+                    <span class="icon is-small is-left">
+                                            <i class="fas fa-key"></i>
+                                    </span>
+                </p>
+                <ul>
+                    <!-- จับใส่ class="help" เองทุกตัวเลย hahahahah -->
+                    <li class="help">Your password can’t be too similar to your other personal information.</li>
+                    <li class="help">Your password must contain at least 8 characters.</li>
+                    <li class="help">Your password can’t be a commonly used password.</li>
+                    <li class="help">Your password can’t be entirely numeric.</li>
+                </ul>
+                <!-- ค่าที่ให้มาเป็น tag ul ทำให้ตัวหนังสือไม่สวย
+                {% if form.password1.help_text %}
+                <p class="help">{{ form.password1.help_text }}</p>
+                {% endif %}
+                -->
+                {% for error in form.password1.errors %}
+                <p class="help has-text-danger">{{ error }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">ยืนยันรหัสผ่าน</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    {{ form.password2|add_class:"input column is-5"|attr:"placeholder:Confirm Password" }}
+                    <span class="icon is-small is-left">
+                                            <i class="fas fa-key"></i>
+                                    </span>
+                </p>
+                {% if form.password2.help_text %}
+                <p class="help">{{ form.password2.help_text }}</p>
+                {% endif %}
+                {% for error in form.password2.errors %}
+                <p class="help has-text-danger">{{ error }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">ชื่อ - สกุล</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    {{ form.first_name|add_class:"input"|attr:"placeholder:Firstname" }}
+                    <span class="icon is-small is-left">
+                                            <i class="fas fa-user"></i>
+                                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    {{ form.last_name|add_class:"input"|attr:"placeholder:Lastname" }}
+                    <span class="icon is-small is-left">
+                                            <i class="fas fa-users"></i>
+                                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">เบอร์โทรศัพท์</label>
+        </div>
+        <div class="field-body">
+            <div class="field is-expanded">
+                <div class="field has-addons">
+                    <p class="control is-expanded  has-icons-left">
+                        {{ form.phone|add_class:"input column is-5"|attr:"placeholder:0912345678" }}
+                        <span class="icon is-small is-left">
+                                                <i class="fas fa-mobile-alt"></i>
+                                        </span>
+                    </p>
+                </div>
+                <p class="help">เบอร์โทรศัพท์นี้ต้องเป็นหมายเลขที่ผูกไว้กับบัญชี พร้อมเพย์ เท่านั้น
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Email</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    {{ form.email|add_class:"input column is-5"|attr:"placeholder:youremail@email.com" }}
+                    <span class="icon is-small is-left">
+                                            <i class="fas fa-envelope"></i>
+                                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">ที่อยู่</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    {{ form.address|add_class:"textarea"|attr:"placeholder:You'r address." }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-body has-text-centered">
+            <div class="field">
+                <div class="control">
+                    <button class="button is-danger" type="submit">
+                        ลงทะเบียน
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% else %}
+<div class="field">
+    <div class="control has-icons-left">
+        <div class="input is-danger">
+            <p>Welcome to LaimaTema, <strong>{{ user }}</strong>.</p>
+        </div>
+        <span class="icon is-left has-text-danger-dark">
+        <i class="fas fa-user"></i>
+        </span>
+    </div>
+</div>
+
+<div class="field has-text-centered">
+    <div class="control">
+        <button class="button is-fullwidth is-danger">กรุณาออกจากระบบก่อนทำการลงทะเบียน</button>
+    </div>
+</div>
+
+<div class="field has-text-centered">
+    <div class="control">
+        <a href="{% url 'logout' %}">
+            <button  id ="logout-clicked" class="button is-fullwidth is-danger is-light">Logout</button>
+        </a>
+    </div>
+</div>
+<script>
+function clicked(){
+    return alert("You have successfully logged out!");
+}
+document.getElementById("logout-clicked").addEventListener("click",clicked);
+</script>
+{% endif %}
+{% endblock %}
