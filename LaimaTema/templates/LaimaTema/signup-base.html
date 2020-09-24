@@ -47,16 +47,20 @@
         </div>
     </div>
 </nav>
+
 <section class="hero has-background-dark">
     <div class="hero-body">
-        <div class="container">
-            <div class="field has-text-centered">
-                <h1 class="title has-text-danger">ลงทะเบียน</h1>
-            </div>
-            <div class="box">
-                {% block signup %}
-                {% endblock %}
-            </div>
+        <div class="field has-text-centered">
+            <h1 class="title has-text-danger">ลงทะเบียน</h1>
+        </div>
+    </div>
+</section>
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container box">
+            {% block signup %}
+            {% endblock %}
         </div>
     </div>
 </section>
