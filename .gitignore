@@ -1,4 +1,5 @@
-static/qr/**
+static/qr/*
+!static/qr
 
 # Django #
 *.log
