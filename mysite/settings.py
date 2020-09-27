@@ -54,7 +54,6 @@ MIDDLEWARE = [
 # pip install django-session-timeout
 SESSION_EXPIRE_SECONDS = 86400  # 1 Day.
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
-SESSION_TIMEOUT_REDIRECT = 'home'
 
 ROOT_URLCONF = 'mysite.urls'
 
