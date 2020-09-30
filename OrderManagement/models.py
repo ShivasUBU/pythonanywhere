@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from .genqr import genQR
 
 
 # Create your models here.
@@ -31,7 +32,17 @@ class Order(models.Model):
     status = models.PositiveSmallIntegerField(choices=statusChoices, default=waitBuyer)
 
     def __str__(self):
-        return f'{self.id} - {self.buyerName}'
+        if self.buyerName == '':
+            return f'{self.id} - รอผู้ซื้อกรอกข้อมูล'
+        else:
+            return f'{self.id} - {self.buyerName}'
+
+
+@receiver(post_save, sender=Order)
+def gen_qr_code(sender, instance, created, **kwargs):
+    if created:
+        order = instance
+        genQR(order.id, order.seller.profile.phone, order.price)
 
 
 class TotalSummary(models.Model):
@@ -46,33 +57,11 @@ class TotalSummary(models.Model):
     sentOrder = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user} TotalSummary'
 
 
 @receiver(post_save, sender=User)
 def update_total_summary(sender, instance, created, **kwargs):
     if created:
         TotalSummary.objects.create(user=instance)
-    instance.profile.save()
-
-
-class MonthSummary(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
-    totalMoney = models.FloatField(default=0.0)
-    totalIncome = models.FloatField(default=0.0)
-    totalOrder = models.IntegerField(default=0)
-    sentOrder = models.IntegerField(default=0)
-
-    def __str__(self):
-        return f'{self.user}'
-
-
-@receiver(post_save, sender=User)
-def update_month_summary(sender, instance, created, **kwargs):
-    if created:
-        MonthSummary.objects.create(user=instance)
-    instance.profile.save()
+    instance.totalsummary.save()

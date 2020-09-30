@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
+def signup(req):
+    if req.method == 'POST':
+        form = SignUpForm(req.POST)
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
@@ -14,8 +14,8 @@ def signup(request):
             user.save()
             password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=password)
-            login(request, user)
+            login(req, user)
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'LaimaTema/signup.html', {'form': form})
+    return render(req, 'LaimaTema/signup.html', {'form': form})

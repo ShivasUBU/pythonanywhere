@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+  <meta name="robots" content="noindex,nofollow" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=7">
+
+  <title>{% block title %}{% endblock %}</title>
+
+  <link rel="stylesheet" href="{% static 'OrderManagement/css/bulma.css' %}">
+  <script type="text/javascript" src="{% static 'OrderManagement/js/web-event.js' %}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+    integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+    crossorigin="anonymous" />
+
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="hero-head">
+      <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+
+          <a class="navbar-item is--brand" href="{% url 'home' %}">
+            <h2 class="title has-text-danger">LaimaTema</h2>
+          </a>
+
+          <button class="button navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+        </div>
+
+        <div class="navbar-menu" id="navMenu">
+          <div class="navbar-start">
+            <a class="navbar-item is-tab" href="{% url 'Dashboard' %}"><span class="icon is-medium"><i
+                  class="fas fa-tachometer-alt"></i></span>Dashboard</a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"><span class="icon is-medium"><i class="fas fa-cash-register"></i></span>
+                Sell Order
+              </a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item" href="{% url 'AddOrder' %}">
+                  เพิ่มออเดอร์
+                </a>
+                <a class="navbar-item" href="{% url 'SearchOrder' %}">
+                  ค้นหาออเดอร์
+                </a>
+                <a class="navbar-item" href="{% url 'WaitSendOrder' %}">
+                  รอจัดส่ง
+                </a>
+                <a class="navbar-item" href="{% url 'AllOrder' %}">
+                  ออเดอร์ทั้งหมด
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                <figure class="image" style="margin-right:.5em;">
+                  <i class="fas fa-user-circle"></i>
+                </figure>
+                Hi!&nbsp;<strong>{{ user }}</strong>
+              </a>
+
+              <div class="navbar-dropdown is-right">
+                <a class="navbar-item" href="{% url 'Profile' %}">
+                  <span class="icon is-small">
+                    <i class="fa fa-user-cog"></i>
+                  </span>
+                  &nbsp; Profile
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item" href="{% url 'logout' %}">
+                  <span class="icon is-small">
+                    <i class="fa fa-power-off"></i>
+                  </span>
+                  &nbsp; Logout
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+{% block content %}
+{% endblock %}
+  <footer class="footer has-background-white">
+    <div class="content has-text-centered">
+      <p>
+        <strong>LaimaTema</strong> by <a href="mailto:thanet.si.62@ubu.ac.th" class="has-text-danger">Thanet
+          Siriboon</a>.
+      </p>
+    </div>
+  </footer>
+
+</body>
+
+</html>

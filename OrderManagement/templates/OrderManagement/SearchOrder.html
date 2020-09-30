@@ -1,0 +1,138 @@
+{% extends "OrderManagement/base.html" %}
+
+{% block title %}ค้นหาออเดอร์{% endblock %}
+
+{% block content %}
+  <div class="section">
+    <div class="container">
+      <div class="columns">
+        <main class="column main">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <div class="title">ค้นหาออเดอร์</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box columns is-multiline">
+            <div class="column is-">
+              <form method="POST">
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">ค้นหาจาก</label>
+                  </div>
+                  <div class="field-body">
+                    <div class="field">
+                      <p class="control has-icons-left">
+                        <span class="select is-fullwidth">
+                          <select>
+                            <option selected>OrderID</option>
+                            <option>ชื่อผู้ซื้อ</option>
+                            <option>ชื่อสินค้า</option>
+                          </select>
+                        </span>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-search"></i>
+                        </span>
+                      </p>
+                    </div>
+                    <div class="field has-addons">
+                      <p class="control is-expanded has-icons-left">
+                        <input class="input" type="text" placeholder="คำค้นหา">
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-align-justify"></i>
+                        </span>
+                      </p>
+                      <div class="control">
+                        <button type="submit" class="button is-danger">
+                          ค้นหา
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="box field is-horizontal">
+            <div class="field-label">
+              <!-- Left empty for spacing -->
+            </div>
+            <div class="field-body columns">
+              <div class="column">
+              <table class="table is-hoverable is-striped is-narrow is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>OrderID</th>
+                    <th>ผู้ซื้อ</th>
+                    <th>สินค้า</th>
+                    <th>สถานะ</th>
+                    <th>รายละเอียด</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>OrderID</th>
+                    <th>ผู้ซื้อ</th>
+                    <th>สินค้า</th>
+                    <th>สถานะ</th>
+                    <th>รายละเอียด</th>
+                  </tr>
+                </tfoot>
+
+                <tbody>
+
+                  <tr>
+                    <th>1</th>
+                    <td>นายดำ กินไก่</td>
+                    <td>กัญชา</td>
+                    <td>รอจัดส่ง</td>
+                    <td>
+                      <a class="has-text-danger">
+                        <span class="icon is-small">
+                          <i class="fas fa-edit"></i>
+                        </span>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>นางแดง กินวัว</td>
+                    <td>ม้า</td>
+                    <td>รอผู้ซื้อทำรายการ</td>
+                    <td>
+                      <a class="has-text-danger">
+                        <span class="icon is-small">
+                          <i class="fas fa-edit"></i>
+                        </span>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>นางขาว กินแมว</td>
+                    <td>รถถัง</td>
+                    <td>จัดส่งแล้ว</td>
+                    <td>
+                      <a class="has-text-danger">
+                        <span class="icon is-small">
+                          <i class="fas fa-edit"></i>
+                        </span>
+                      </a>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+              
+            </div>
+            </div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </div>
+{% endblock %}

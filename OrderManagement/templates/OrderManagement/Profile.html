@@ -1,0 +1,80 @@
+{% extends "OrderManagement/base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+  <div class="section">
+    <div class="container">
+      <div class="columns">
+        <main class="column main">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <div class="title"><i class="fa fa-user-cog"></i> Profile</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box is-multiline">
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">ชื่อผู้ใช้</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                    <p>{{ user }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">ชื่อ - สกุล</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                    <p>{{ user.get_full_name }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">Email</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                    <p>{{ user.email }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">เบอร์โทรศัพท์</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                    <p>{{ user.profile.phone }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">ที่อยู่</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                    <p>{{ user.profile.address }}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </div>
+{% endblock %}

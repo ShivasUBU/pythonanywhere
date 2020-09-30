@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('LaimaTema.urls')),
     path('OrderManagement/', include('OrderManagement.urls')),
+    path('Order/', include('Order.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

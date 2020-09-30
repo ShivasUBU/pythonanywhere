@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
 from .models import Profile
-from OrderManagement.models import TotalSummary, MonthSummary
+from OrderManagement.models import TotalSummary
 
 
 class ProfileInline(admin.StackedInline):
@@ -20,15 +20,8 @@ class TotalSummaryInline(admin.StackedInline):
     fk_name = 'user'
 
 
-class MonthSummaryInline(admin.StackedInline):
-    model = MonthSummary
-    can_delete = False
-    verbose_name_plural = 'MonthSummary'
-    fk_name = 'user'
-
-
 class CustomUserAdmin(UserAdmin):
-    inlines = (ProfileInline, TotalSummaryInline, MonthSummaryInline,)
+    inlines = (ProfileInline, TotalSummaryInline,)
 
     def get_inline_instances(self, request, obj=None):
         if not obj:

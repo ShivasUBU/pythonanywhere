@@ -1,0 +1,91 @@
+{% extends "OrderManagement/base.html" %}
+
+{% block title %}เพิ่มออเดอร์{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="columns">
+            <main class="column main">
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="title">เพิ่มออเดอร์</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box columns is-multiline">
+                    <div class="column is-9">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% load widget_tweaks %}
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">ชื่อสินค้า</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control is-expanded has-icons-left">
+                                            {{ form.productName|add_class:"input column is-5"|attr:"placeholder:กระเป๋าเป้" }}
+                                            <span class="icon is-small is-left">
+                          <i class="fas fa-shopping-basket"></i>
+                        </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">ราคา (บาท)</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control is-expanded has-icons-left">
+                                            {{ form.price|add_class:"input column is-5"|attr:"placeholder:999.25" }}
+                                            <span class="icon is-small is-left">
+                          <i class="fas fa-money-bill-wave"></i>
+                        </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label class="label">รายละเอียดสินค้า</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            {{ form.productDetail|add_class:"textarea"|attr:"placeholder:กระเป๋าเป้สำหรับเดินทางท่องเที่ยว" }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field is-horizontal">
+                                <div class="field-label">
+                                    <!-- Left empty for spacing -->
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-danger">
+                                                เพิ่ม
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}

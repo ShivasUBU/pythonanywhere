@@ -37,7 +37,7 @@ function clicked(){
 document.getElementById("logout-clicked").addEventListener("click",clicked);
 </script>
 {% else %}
-<form action="{% url 'home' %}" method="POST">
+<form method="POST">
     {% csrf_token %}
     <div class="field">
         <div class="control has-icons-left has-icons-right">

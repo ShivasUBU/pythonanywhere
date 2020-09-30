@@ -1,0 +1,73 @@
+{% extends "OrderManagement/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <div class="section">
+    <div class="container">
+      <div class="columns">
+        <main class="column main">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <div class="title"><i class="fa fa-tachometer-alt"></i> Dashboard</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="columns is-centered is-multiline">
+
+            <div class="column is-6">
+              <div class="box notification is-warning">
+                <div class="heading">รายได้ทั้งหมด</div>
+                <div class="title">{{ income }}&nbsp;บาท</div>
+                <div class="level is-mobile">
+                  <div class="level-item">
+                    <div class="">
+                      <div class="heading">ออเดอร์ทั้งหมด</div>
+                      <div class="title is-5">{{ orders }}</div>
+                    </div>
+                  </div>
+                  <div class="level-item">
+                    <div class="">
+                      <div class="heading">ออเดอร์ที่จัดส่ง</div>
+                      <div class="title is-5">{{ sent }}</div>
+                    </div>
+                  </div>
+                  <div class="level-item">
+                    <div class="">
+                      <div class="heading">อยู่ระหว่างดำเนินการ / ไม่สำเร็จ</div>
+                      <div class="title is-5">{{ failorder }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-6">
+              <div class="box notification is-danger">
+                <div class="heading">ออเดอร์ที่สำเร็จ / ออเดอร์ที่ไม่สำเร็จ</div>
+                <div class="title">{{ percent }}</div>
+                <div class="level is-mobile">
+                  <div class="level-item">
+                    <div class="">
+                      <div class="heading">จำนวนเงินที่ได้</div>
+                      <div class="title is-5">{{ income }}&nbsp;บาท</div>
+                    </div>
+                  </div>
+                  <div class="level-item">
+                    <div class="">
+                      <div class="heading">จำนวนเงินที่ไม่ได้</div>
+                      <div class="title is-5">{{ failmoney }}&nbsp;บาท</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+{% endblock %}

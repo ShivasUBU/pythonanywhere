@@ -1,0 +1,86 @@
+{% extends "OrderManagement/base.html" %}
+
+{% block title %}รอจัดส่ง{% endblock %}
+
+{% block content %}
+  <div class="section">
+    <div class="container">
+      <div class="columns">
+        <main class="column main">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <div class="title">รอจัดส่ง</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box columns is-multiline">
+            <div class="column">
+              <table class="table is-hoverable is-striped is-narrow is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>OrderID</th>
+                    <th>ผู้ซื้อ</th>
+                    <th>สินค้า</th>
+                    <th>เพิ่มข้อมูลจัดส่ง</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>OrderID</th>
+                    <th>ผู้ซื้อ</th>
+                    <th>สินค้า</th>
+                    <th>เพิ่มข้อมูลจัดส่ง</th>
+                  </tr>
+                </tfoot>
+
+                <tbody>
+
+                  <tr>
+                    <th>1</th>
+                    <td>นายดำ กินไก่</td>
+                    <td>กัญชา</td>
+                    <td>
+                      <a class="has-text-danger">
+                        <span class="icon is-small">
+                          <i class="fas fa-edit"></i>
+                        </span>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>นางแดง กินวัว</td>
+                    <td>ม้า</td>
+                    <td>
+                      <a class="has-text-danger">
+                        <span class="icon is-small">
+                          <i class="fas fa-edit"></i>
+                        </span>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>นางขาว กินแมว</td>
+                    <td>รถถัง</td>
+                    <td>
+                      <a class="has-text-danger">
+                        <span class="icon is-small">
+                          <i class="fas fa-edit"></i>
+                        </span>
+                      </a>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </div>
+{% endblock %}

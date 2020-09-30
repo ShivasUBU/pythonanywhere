@@ -1,0 +1,183 @@
+{% extends "OrderManagement/base.html" %}
+
+{% block title %}OrderID:&nbsp;{{ order.id }}{% endblock %}
+
+{% block content %}
+  <div class="section">
+    <div class="container">
+      <div class="columns">
+        <main class="column main">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <div class="title">OrderID:&nbsp;{{ order.id }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box is-multiline">
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">สินค้า</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.productName }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">สถานะ</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.get_status_display }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">ราคา</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.price }}&nbsp;บาท</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">รายละเอียดสินค้า</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.productDetail }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">เวลาที่สร้าง Order</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.timestamp }}</p>
+                </div>
+              </div>
+            </div>
+
+            {% if order.status == 1 %}
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Link สำหรับลูกค้า</label>
+              </div>
+              <div class="field-body">
+                <div class="field is-grouped">
+                  <div class="control">
+
+                    <input type="url" class="input has-text-danger" id="forCopy" value="{{ request.scheme }}://{{ request.get_host }}{% url 'Order' order.id %}">
+                  </div>
+                  <div class="control">
+                    <a class="button is-danger" onclick="textCopy()">
+                      Copy
+                    </a>
+                  </div>
+                  <div class="control">
+                    <a class="button is-danger" href="{{ request.scheme }}://{{ request.get_host }}{% url 'Order' order.id %}" target="_blank">
+                      เปิด
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if order.status >= 2 %}
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">ผู้ซื้อ</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.buyerName }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">หมายเลขโทรศัพท์ผู้ซื้อ</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.buyerPhone }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">ที่อยู่จัดส่ง</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.sendAddress }}</p>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if order.status == 2 %}
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <!-- Left empty for spacing -->
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                    <a href="">
+                      <button class="button is-danger">
+                        เพิ่มข้อมูลจัดส่ง
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if order.status == 3 %}
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">บริษัทขนส่ง</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.logistic }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label">
+                <label class="label">TrackingID</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p>{{ order.trackingId }}</p>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+{% endblock %}
