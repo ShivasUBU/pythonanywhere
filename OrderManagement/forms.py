@@ -7,3 +7,9 @@ class OrderForm(ModelForm):
     class Meta:
         model = Order
         fields = ['productName', 'price', 'productDetail']
+
+
+class AddSend(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['logistic', 'trackingId']

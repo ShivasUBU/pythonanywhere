@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'widget_tweaks',  # pip install django-widget-tweaks
     'LaimaTema',
     'OrderManagement',
+    'Order',
 ]
 
 MIDDLEWARE = [

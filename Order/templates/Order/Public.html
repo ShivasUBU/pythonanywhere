@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta name="robots" content="noindex,nofollow"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=7">
+
+    <title>OrderID:&nbsp;{{ order.id }}</title>
+
+    <link rel="stylesheet" href="{% static 'OrderManagement/css/bulma.css' %}">
+    <script type="text/javascript" src="{% static 'OrderManagement/js/web-event.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+          integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+          crossorigin="anonymous"/>
+
+</head>
+
+<body>
+
+<header class="hero">
+    <div class="hero-head">
+        <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+
+                <a class="navbar-item is--brand" href="/">
+                    <h2 class="title has-text-danger">LaimaTema</h2>
+                </a>
+
+                <button class="button navbar-burger" data-target="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+            <div class="navbar-menu" id="navMenu">
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <a class="button is-danger is-light" href="/">
+                    <span class="icon">
+                      <i class="fas fa-home"></i>
+                    </span>
+                                    <span>หน้าแรก</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="section">
+    <div class="box container">
+        <div class="columns">
+            <main class="column main">
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="title">OrderID:&nbsp;{{ order.id }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">สินค้า</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p>{{ order.productName }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">สถานะ</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p>{{ order.get_status_display }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">ราคา</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p>{{ order.price }}&nbsp;บาท</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">รายละเอียดสินค้า</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p>{{ order.productDetail }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">เวลาที่สร้าง Order</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p>{{ order.timestamp }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">ผู้ขาย</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p>{{ order.seller.get_full_name }}่</p>
+                        </div>
+                        <div class="field-label">
+                            <label class="label">โทรศัพท์ผู้ขาย</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p>{{ order.seller.profile.phone }}่</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if order.status >= 2 %}
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">ผู้ซื้อ</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p>{{ order.buyerName }}่</p>
+                        </div>
+                        <div class="field-label">
+                            <label class="label">โทรศัพท์ผู้ซื้อ</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p>{{ order.buyerPhone }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">ที่อยู่จัดส่ง</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <p>{{ order.sendAddress }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if order.status >= 3 %}
+                    <div class="field is-horizontal">
+                        <div class="field-label">
+                            <label class="label">บริษัทขนส่ง</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p>{{ order.logistic }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">TrackingID</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field has-addons">
+                                <div class="control">
+
+                                    <input type="url" class="input has-text-danger" id="forCopy"
+                                           value="{{ order.trackingId }}">
+                                </div>
+                                <div class="control">
+                                    <a class="button is-danger" onclick="textCopy()">
+                                        Copy
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+            </main>
+        </div>
+    </div>
+</div>
+
+{% if order.status == 1 %}
+<div class="section">
+    <div class="box container">
+        <div class="columns">
+            <main class="column main">
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="title is-3">กรุณาทำรายการ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    {% load widget_tweaks %}
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">สแกนจ่าย</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control is-expanded has-icons-left">
+                                    <figure class="image is-128x128">
+                                        <img src="{% static 'qr' %}/{{ order.id }}.png">
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">หรือ</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control is-expanded has-icons-left">
+                                    <a class="button is-danger is-light" href="{% static 'qr' %}/{{ order.id }}.png" download>Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">ผู้ซื้อ</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left">
+                                    {{ form.buyerName|add_class:"input is-fullwidth"|attr:"placeholder:ชื่อ - สกุล" }}
+                                    <span class="icon is-small is-left">
+                      <i class="fas fa-signature"></i>
+                    </span>
+                                </p>
+                            </div>
+                            <div class="field-label is-normal">
+                                <label class="label">โทรศัพท์ผู้ซื้อ</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        {{ form.buyerPhone|add_class:"input is-fullwidth"|attr:"placeholder:09xxxxxxxx" }}
+                                        <span class="icon is-small is-left">
+                        <i class="fas fa-mobile-alt"></i>
+                      </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">ที่อยู่จัดส่ง</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left">
+                                    {{ form.sendAddress|add_class:"textarea"|attr:"placeholder:ที่อยู่ของคุณ" }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label">
+                            <!-- Left empty for spacing -->
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    <button type="submit" class="button is-danger">
+                                        บันทึก
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </main>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<footer class="footer has-background-white">
+    <div class="content has-text-centered">
+        <p>
+            <strong>LaimaTema</strong> by <a href="mailto:thanet.si.62@ubu.ac.th" class="has-text-danger">Thanet
+            Siriboon</a>.
+        </p>
+    </div>
+</footer>
+
+</body>
+
+</html>

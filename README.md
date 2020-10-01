@@ -6,6 +6,7 @@
 ```sh
 pip3 install django-session-timeout
 pip3 install django-widget-tweaks
+pip3 install pypromptpay
 ```
 
 

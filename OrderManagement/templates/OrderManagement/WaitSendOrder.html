@@ -37,45 +37,45 @@
 
                 <tbody>
 
+                  {% for order in orders %}
                   <tr>
-                    <th>1</th>
-                    <td>นายดำ กินไก่</td>
-                    <td>กัญชา</td>
+                    <th>{{ order.id }}</th>
+                    {% if order.buyerName == '' %}
+                    <td>รอผู้ซื้อกรอกข้อมูล</td>
+                    {% else %}
+                    <td>{{ order.buyerName }}</td>
+                    {% endif %}
+                    <td>{{ order.productName }}</td>
                     <td>
-                      <a class="has-text-danger">
+                      <a class="has-text-danger" href="{% url 'OrderDetail' order.id %}" target="_blank">
                         <span class="icon is-small">
                           <i class="fas fa-edit"></i>
                         </span>
                       </a>
                     </td>
                   </tr>
-                  <tr>
-                    <th>2</th>
-                    <td>นางแดง กินวัว</td>
-                    <td>ม้า</td>
-                    <td>
-                      <a class="has-text-danger">
-                        <span class="icon is-small">
-                          <i class="fas fa-edit"></i>
-                        </span>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>2</th>
-                    <td>นางขาว กินแมว</td>
-                    <td>รถถัง</td>
-                    <td>
-                      <a class="has-text-danger">
-                        <span class="icon is-small">
-                          <i class="fas fa-edit"></i>
-                        </span>
-                      </a>
-                    </td>
-                  </tr>
+                {% endfor %}
 
                 </tbody>
               </table>
+
+              <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                {% if orders.has_previous %}
+                <a class="pagination-previous button is-danger is-light" href="?page=1">&laquo; หน้าแรก</a>
+                {% endif %}
+                {% if orders.has_next %}
+                <a class="pagination-next button is-danger is-light" href="?page={{ orders.paginator.num_pages }}">หน้าสุดท้าย &raquo;</a>
+                {% endif %}
+                <ul class="pagination-list">
+                  {% if orders.has_previous %}
+                  <li><a class="pagination-link" href="?page={{ orders.previous_page_number }}">&langd; หน้าที่แล้ว</a></li>
+                  {% endif %}
+                  <li><a class="pagination-link is-current" aria-current="page">{{ orders.number }} จาก {{ orders.paginator.num_pages }} หน้า</a></li>
+                  {% if orders.has_next %}
+                  <li><a class="pagination-link" href="?page={{ orders.next_page_number }}">หน้าถัดไป &rangd;</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
             </div>
           </div>
 

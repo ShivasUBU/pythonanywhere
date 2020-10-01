@@ -17,7 +17,7 @@
 
           <div class="box columns is-multiline">
             <div class="column is-">
-              <form method="POST">
+              <form method="GET">
                 <div class="field is-horizontal">
                   <div class="field-label is-normal">
                     <label class="label">ค้นหาจาก</label>
@@ -26,10 +26,9 @@
                     <div class="field">
                       <p class="control has-icons-left">
                         <span class="select is-fullwidth">
-                          <select>
-                            <option selected>OrderID</option>
-                            <option>ชื่อผู้ซื้อ</option>
-                            <option>ชื่อสินค้า</option>
+                          <select name="searchBy">
+                            <option value="1" {% if searchBy == '1' %}selected{% endif %}>OrderID</option>
+                            <option value="2" {% if searchBy == '2' %}selected{% endif %}>ชื่อผู้ซื้อ</option>
                           </select>
                         </span>
                         <span class="icon is-small is-left">
@@ -39,7 +38,7 @@
                     </div>
                     <div class="field has-addons">
                       <p class="control is-expanded has-icons-left">
-                        <input class="input" type="text" placeholder="คำค้นหา">
+                        <input class="input" type="text" name="keyword" placeholder="คำค้นหา" {% if keyword %}value="{{ keyword }}"{% endif %}>
                         <span class="icon is-small is-left">
                           <i class="fas fa-align-justify"></i>
                         </span>
@@ -56,6 +55,7 @@
             </div>
           </div>
 
+          {% if orders %}
           <div class="box field is-horizontal">
             <div class="field-label">
               <!-- Left empty for spacing -->
@@ -84,45 +84,25 @@
 
                 <tbody>
 
+                  {% for order in orders %}
                   <tr>
-                    <th>1</th>
-                    <td>นายดำ กินไก่</td>
-                    <td>กัญชา</td>
-                    <td>รอจัดส่ง</td>
+                    <th>{{ order.id }}</th>
+                    {% if order.buyerName == '' %}
+                    <td>รอผู้ซื้อกรอกข้อมูล</td>
+                    {% else %}
+                    <td>{{ order.buyerName }}</td>
+                    {% endif %}
+                    <td>{{ order.productName }}</td>
+                    <td>{{ order.get_status_display }}</td>
                     <td>
-                      <a class="has-text-danger">
+                      <a class="has-text-danger" href="{% url 'OrderDetail' order.id %}" target="_blank">
                         <span class="icon is-small">
                           <i class="fas fa-edit"></i>
                         </span>
                       </a>
                     </td>
                   </tr>
-                  <tr>
-                    <th>2</th>
-                    <td>นางแดง กินวัว</td>
-                    <td>ม้า</td>
-                    <td>รอผู้ซื้อทำรายการ</td>
-                    <td>
-                      <a class="has-text-danger">
-                        <span class="icon is-small">
-                          <i class="fas fa-edit"></i>
-                        </span>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>2</th>
-                    <td>นางขาว กินแมว</td>
-                    <td>รถถัง</td>
-                    <td>จัดส่งแล้ว</td>
-                    <td>
-                      <a class="has-text-danger">
-                        <span class="icon is-small">
-                          <i class="fas fa-edit"></i>
-                        </span>
-                      </a>
-                    </td>
-                  </tr>
+                {% endfor %}
 
                 </tbody>
               </table>
@@ -130,6 +110,7 @@
             </div>
             </div>
           </div>
+          {% endif %}
 
         </main>
       </div>
